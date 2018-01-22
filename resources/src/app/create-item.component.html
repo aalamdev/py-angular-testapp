@@ -1,0 +1,28 @@
+<a [routerLink]="['/']"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+<br/>
+<div class="col-xs-12 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Create New Item</h4>
+        </div>
+        <div class="panel-body">
+            <form class="form" (ngSubmit)="createItem()">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input class="form-control" name="name" placeholder="e.x Test Name" [(ngModel)]="new_name"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Type</label>
+                    <input class="form-control" name="type" placeholder="e.x Test Type" [(ngModel)]="new_type"/>
+                </div>
+                <div class="alert alert-danger" *ngIf="alert_msg">
+                    <span class="close pull-right" (click)="alert_msg = null">&times;</span>
+                    {{alert_msg}}
+                </div>
+
+                <button class="btn btn-primary center-block" type="submit"><span class="glyphicon glyphicon-plus"></span> Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>

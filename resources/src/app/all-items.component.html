@@ -1,0 +1,42 @@
+<div *ngIf="permissions && permissions.items_manage">
+    <div class="pull-right">
+    <a [routerLink]="['create']" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> New Item</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<br/>
+
+<div class="table-responsive" *ngIf="permissions && permissions.items_access">
+    <table class="table">
+        <thead>
+            <th *ngIf="permissions.items_manage"></th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Owner</th>
+        </thead>
+        <tr *ngFor="let item of items; let index = index">
+            <td *ngIf="permissions.items_manage">
+                <span class="glyphicon glyphicon-trash" (click)="deleteItem(index)"></span>
+            </td>
+            <td>{{item.name}}</td>
+            <td *ngIf="permissions.items_manage">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Type" [(ngModel)]="item.type">
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button"
+                            *ngIf="item.orig_type != item.type"
+                            (click)="updateItem(item)">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    </span>
+                </div><!-- /input-group -->
+            </td>
+            <td *ngIf="!permissions.items_manage">{{item.type}}</td>
+            <td>{{item.owner}}</td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="permissions && !permissions.items_access">
+    You do not have enough permissions to access items
+</div>
