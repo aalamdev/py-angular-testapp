@@ -45,7 +45,7 @@ In this case, the provider code is `aalam`
 
 - Click on the provider and create an app with the
 [`app_code`](http://docs.aalam.io/_/apps/latest/definitions.html#app-code). In this case
-it is `py_ang_testapp`
+it is `pyangtestapp`
 
 - Compress the app's code folder in `.tar.gz` format and submit a new version in the SDK.
 This will show how the packaging of the app is being done. This is similar to the packaging

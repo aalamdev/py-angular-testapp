@@ -7,14 +7,14 @@ export class AppService {
     constructor(private http: HttpClient) {}
     getUserPermissions() {
         return new Promise<ModelPermissions>(resolve => {
-            this.http.get<ModelPermissions>("/aalam/py_ang_testapp/user_permissions").subscribe(data => {
+            this.http.get<ModelPermissions>("/aalam/pyangtestapp/user_permissions").subscribe(data => {
                 resolve(data);
             })
         });
     }
     createItem(body:Object) {
         return new Promise<any>(resolve=> {
-            this.http.put("/aalam/py_ang_testapp/items", body).subscribe(
+            this.http.put("/aalam/pyangtestapp/items", body).subscribe(
                 data => {resolve(0)},
                 err => {resolve(-1)}
             )
@@ -25,14 +25,14 @@ export class AppService {
             let http_params = new HttpParams()
             for (let k of Object.keys(params))
                 http_params.set(k, params[k])
-            this.http.get<ModelItem[]>("/aalam/py_ang_testapp/items", {params: http_params}).subscribe(
+            this.http.get<ModelItem[]>("/aalam/pyangtestapp/items", {params: http_params}).subscribe(
                 data => {resolve(data)}
             )
         })
     }
     updateItem(item_name:string, new_type:string) {
         return new Promise<any>(resolve => {
-            this.http.post("/aalam/py_ang_testapp/item/" + item_name, null, {params: {'type': new_type}}).subscribe(
+            this.http.post("/aalam/pyangtestapp/item/" + item_name, null, {params: {'type': new_type}}).subscribe(
                 data => {resolve(0)},
                 err => {resolve(-1)}
             );
@@ -40,7 +40,7 @@ export class AppService {
     }
     deleteItem(item_name:string) {
         return new Promise<any>(resolve => {
-            this.http.delete("/aalam/py_ang_testapp/item/" + item_name).subscribe(
+            this.http.delete("/aalam/pyangtestapp/item/" + item_name).subscribe(
                 data => {resolve(0)},
                 err => {resolve(-1)}
             );

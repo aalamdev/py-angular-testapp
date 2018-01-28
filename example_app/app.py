@@ -25,10 +25,10 @@ def hook_entry(request):
     # For the anonymous users, a general information will be shown
 
     if not auth.is_anonymous_user(request):
-        return {"entry": "/aalam/py_ang_testapp/"}
+        return {"entry": "/aalam/pyangtestapp/"}
     else:
         # anonymous users
-        return {"entry": "/aalam/py_ang_testapp/s/templates/anon.html"}
+        return {"entry": "/aalam/pyangtestapp/s/templates/anon.html"}
 
 
 class TestAppHandler(wsgi.BaseHandler):
@@ -245,7 +245,7 @@ def routes_cb(mapper):
 
         # Below url accepts input data, and it can be in xml/json format.
         # It allows only valid users with "Items/manage" permission
-        m.connect("/aalam/py_ang_testapp/items",
+        m.connect("/aalam/pyangtestapp/items",
                   action="create_item",
                   deserializer="create_item_deserializer",
                   permissions=role_mgmt.Permissions.all(
@@ -255,7 +255,7 @@ def routes_cb(mapper):
         # Below URL will send a json or XML output.
         # This api is denied for user who does not have "Items/access"
         # permission
-        m.connect("/aalam/py_ang_testapp/item/{item_name}",
+        m.connect("/aalam/pyangtestapp/item/{item_name}",
                   action="get_item",
                   permissions=role_mgmt.Permissions.all(
                     'Items/access'),
@@ -263,7 +263,7 @@ def routes_cb(mapper):
                   conditions={"method": ['GET']})
 
         # Below URL will send the list of items create thus far
-        m.connect("/aalam/py_ang_testapp/items",
+        m.connect("/aalam/pyangtestapp/items",
                   action="get_items",
                   permissions=role_mgmt.Permissions.all(
                     'Items/access'),
@@ -271,29 +271,29 @@ def routes_cb(mapper):
 
         # Below URL is used to update an items, but will permit a user
         # to update only if it is created by the same user.
-        m.connect("/aalam/py_ang_testapp/item/{item_name}",
+        m.connect("/aalam/pyangtestapp/item/{item_name}",
                   action="update_item",
                   permissions=role_mgmt.Permissions().deny_anon(),
                   conditions={"method": ['POST']})
 
         # Below URL is used to delete an item, but will permit a user
         # to delete only if it is created by the same user.
-        m.connect("/aalam/py_ang_testapp/item/{item_name}",
+        m.connect("/aalam/pyangtestapp/item/{item_name}",
                   action="delete_item",
                   permissions=role_mgmt.Permissions().deny_anon(),
                   conditions={"method": ['DELETE']})
 
         # Below url sends the permissions of the user to the angular app
         # So that it can disable or enable the necessary UI for a user.
-        m.connect("/aalam/py_ang_testapp/user_permissions",
+        m.connect("/aalam/pyangtestapp/user_permissions",
                   action="get_user_permissions",
                   conditions={'method': ['GET']})
 
         # Below url sends the index page. If there are any angular routes,
         # this will load the angular app and the angular framework will
         # route to the appropriate angular route
-        # Notice the <base href="/aalam/py_ang_testapp/"> in the src/index.html
-        m.connect("/aalam/py_ang_testapp/{path_info:.*}",
+        # Notice the <base href="/aalam/pyangtestapp/"> in the src/index.html
+        m.connect("/aalam/pyangtestapp/{path_info:.*}",
                   action="send_angular_app",
                   conditions={"method": ['GET']})
 

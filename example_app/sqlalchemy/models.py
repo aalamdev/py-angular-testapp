@@ -2,7 +2,7 @@ import sqlalchemy as sqa
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
-db_name = "aalam_py_ang_testapp"
+db_name = "aalam_pyangtestapp"
 
 
 class Owners(Base):
