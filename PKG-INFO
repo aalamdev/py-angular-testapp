@@ -1,4 +1,4 @@
-statics-url: /aalam/py_ang_testapp/s
+statics-url: /aalam/pyangtestapp/s
 statics-path: resources
 entry-point: example_app.app:entry
 permissions:
