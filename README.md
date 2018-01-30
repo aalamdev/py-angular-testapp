@@ -55,3 +55,43 @@ done when you submit it to the [aalam apps server](https://apps.aalam.io/dev)
 setting it as the current version. 
 
 - Now you can access apps URLs with different user privileges.
+
+
+# Rebuild the Angular app
+
+To rebuild the angular app, go to the resource folders and first install the 
+nodejs packages by executing
+
+```
+npm install
+```
+
+The above command will take time as it downloads lots of packages. After it
+completes, run the 
+
+```
+./build.sh
+```
+
+from the `resources` folder if you are running linux else
+
+```
+build.bat
+```
+
+if you are using windows. This will generate the necessary files.
+
+Now you can compress it and submit it in the SDK and verify your changes.
+To compress in linux, use this command
+
+```
+tar -czf pyangtestapp.tgz example_app/ PKG-INFO resources/ --exclude "resources/node_modules" setup.py
+```
+
+In windows you can use the 
+
+```
+compress.bat
+```
+
+but make sure that you have 7zip install in `C:\Program Files\7zip\`
